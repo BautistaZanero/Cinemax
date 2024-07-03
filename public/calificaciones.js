@@ -1,4 +1,4 @@
-// codigo celina vidal 
+
 class Calificaciones {
   constructor() {
       const commentForm = document.querySelector('#comment-form');
