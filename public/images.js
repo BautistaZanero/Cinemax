@@ -1,4 +1,4 @@
-// codigo celina vidal
+
 class Images {
   constructor(container, imageUrl) {
     this.container = container;
