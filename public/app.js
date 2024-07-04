@@ -58,17 +58,17 @@ class App {
 
   _renderMovies(sortFn) {
     const imageContainer = document.querySelector('#image-container');
-    imageContainer.innerHTML = "";  // Clear the container first
-
+    imageContainer.innerHTML = "";  
+    
     for (const movie of this.moviesList) {
-      const movieElement = document.createElement('div'); // Crea un div
+      const movieElement = document.createElement('div'); 
 
-      movieElement.classList.add('movie-container'); // Se encarga de ponerle estilos
+      movieElement.classList.add('movie-container'); 
 
-      new Images(movieElement, movie.image); // crea una imagen y la añade a movieElement
-      new MovieDetails(movieElement, movie.title, movie.description, movie.rating, movie.duration); // crea los detalles y la añade a movieElement
+      new Images(movieElement, movie.image); 
+      new MovieDetails(movieElement, movie.title, movie.description, movie.rating, movie.duration); 
       
-      imageContainer.appendChild(movieElement);  // Añadir al contenedor de imágenes
+      imageContainer.appendChild(movieElement);  
     }
   }
 
@@ -86,19 +86,19 @@ class App {
 
   _onJsonReady(json) {
     this.moviesList = json.movies;
-    this._renderMovies((a, b) => a.title.localeCompare(b.title));  // Orden inicial alfabético
-    // this.loadImages(json.movies);  // Cargar imágenes después de obtener las películas
+    this._renderMovies((a, b) => a.title.localeCompare(b.title));  
+    // this.loadImages(json.movies); 
   }
 
   loadImages(moviesList) {
     const imageContainer = document.querySelector('#image-container');
-    imageContainer.innerHTML = "";  // Clear the container first
+    imageContainer.innerHTML = "";  
     for (const movie of moviesList) {
       const movieElement = document.createElement('div');
       movieElement.classList.add('movie-container');
       new Images(movieElement, movie.image);
       new MovieDetails(movieElement, movie.title, movie.description, movie.rating, movie.duration);
-      imageContainer.appendChild(movieElement);  // Añadir al contenedor de imágenes
+      imageContainer.appendChild(movieElement);  
     }
   }
  /*cerrar sesion*/
