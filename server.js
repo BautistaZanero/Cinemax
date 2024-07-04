@@ -59,7 +59,7 @@ class MoviesBackendServer {
 
 
   
-  async doLookup(req, res) { //tuve que cambiar el username y password a req y res 
+  async doLookup(req, res) { 
     const user = req.params.user.toLowerCase();
     const query = { username: user };
     const collection = db.collection("users");
@@ -71,37 +71,36 @@ class MoviesBackendServer {
     }
   }
 
-  async doNew(req, res) { //tuve que cambiar el username y password a req y res 
+  async doNew(req, res) { 
     const encryptedUsername = req.body.username;
     const encryptedPassword = req.body.password; 
-    const key = "CINEMAX - API"; // Clave privada 
+    const key = "CINEMAX - API"; 
     
-    // Registrando el nombre de usuario y la contraseña encriptados recibidos
+    
     console.log("Este es el username encriptado que recibió el servidor: " + encryptedUsername);
     console.log("Este es el password encriptado que recibió el servidor: " + encryptedPassword);
 
-    // Desencriptando el nombre de usuario y la contraseña recibidos
+    
     const registroUsername = CryptoJS.AES.decrypt(encryptedUsername, key).toString(CryptoJS.enc.Utf8);
     const registroPassword = CryptoJS.AES.decrypt(encryptedPassword, key).toString(CryptoJS.enc.Utf8);
 
-    // Registrando el nombre de usuario y la contraseña desencriptados
+   
     console.log("Este es el username luego de la desencriptación: " + registroUsername);
     console.log("Este es el password luego de la desencriptación: " + registroPassword);
 
-    // Hasheando la contraseña antes de guardarla en la base de datos
-    //parte del bcrypt
+    
+
     const saltRounds = 10;
     const salt = await Bcrypt.genSalt(saltRounds);
     const hashedRegisterPassword = await Bcrypt.hash(registroPassword, salt);
 
-    // Creando la consulta y actualizando o insertando el usuario
     const query = { username: registroUsername };
     const update = { $set: { password: hashedRegisterPassword } };
     const params = { upsert: true };
     const collection = db.collection('users');
     await collection.updateOne(query, update, params);
 
-    res.json({ success: true }); // Corregido aquí
+    res.json({ success: true }); 
     console.log("Guardado");
   }
 
