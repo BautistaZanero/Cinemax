@@ -1,4 +1,4 @@
-//codigo celina vidal
+
 class MovieDetails {
   constructor(container, title, description, rating, duration) {
     this.container = container;
