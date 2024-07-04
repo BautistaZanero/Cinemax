@@ -8,7 +8,7 @@ class Cartelera {
     this.doLogout = this.doLogout.bind(this);
 
     document.addEventListener('DOMContentLoaded', () => {
-      console.log("HEYEYE");
+    
       this.loadCartelera();
 
       const logout = document.querySelector('#logoutBtn');
