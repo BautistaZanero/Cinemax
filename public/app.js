@@ -23,12 +23,7 @@ class App {
       this.loadMovies();
     });
     
-    /*cerrar sesion*/
-    const logout = document.querySelector('#logoutBtn');
-    this.doLogout = this.doLogout.bind(this);
-    logout.addEventListener('click', this.doLogout);
-  }
-
+    
   _onAscClick() {
   this.moviesList.forEach(pelicula => {
       pelicula.duracionNumero = parseInt(pelicula.duration.replace(' min', '')); 
@@ -106,7 +101,11 @@ class App {
       imageContainer.appendChild(movieElement);  // Añadir al contenedor de imágenes
     }
   }
-  
+ /*cerrar sesion*/
+    const logout = document.querySelector('#logoutBtn');
+    this.doLogout = this.doLogout.bind(this);
+    logout.addEventListener('click', this.doLogout);
+  } 
   doLogout(event) {
   event.preventDefault();
   fetch('/logout/', {
